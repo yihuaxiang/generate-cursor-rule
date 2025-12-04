@@ -1,6 +1,6 @@
 {
   "name": "generate-cursor-rule",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "自动在 Cursor 编辑器中创建 /generate-cursor-rule 命令",
   "main": "index.js",
   "scripts": {
