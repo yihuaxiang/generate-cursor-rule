@@ -48,12 +48,39 @@ try {
     fs.mkdirSync(cursorCommandsDir, { recursive: true });
   }
 
+  // 检查文件是否已存在
+  const fileExists = fs.existsSync(ruleFilePath);
+  
+  if (fileExists) {
+    console.log(`ℹ️  文件已存在: ${ruleFilePath}`);
+    console.log(`   跳过创建，保留现有文件内容`);
+    console.log(`   如需重新生成，请先删除该文件`);
+    console.log('');
+    console.log('💡 提示：如果文件已存在，请重启 Cursor 编辑器后使用 /generate-cursor-rule 命令');
+    process.exit(0);
+  }
+
   // 写入文件
   fs.writeFileSync(ruleFilePath, ruleContent, 'utf8');
   
   console.log(`✓ 已成功创建: ${ruleFilePath}`);
-  console.log(`✓ 现在您可以在 Cursor 中使用 /generate-cursor-rule 命令了`);
-  console.log(`  (请重启 Cursor 编辑器以使命令生效)`);
+  console.log('');
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  console.log('  ✅ 文件创建成功！');
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  console.log('');
+  console.log('📝 下一步操作：');
+  console.log('');
+  console.log('  1️⃣  重启 Cursor 编辑器（重要！）');
+  console.log('     - 关闭并重新打开 Cursor');
+  console.log('');
+  console.log('  2️⃣  在 Cursor 中使用命令：');
+  console.log('     - 打开命令面板：Cmd/Ctrl + Shift + P');
+  console.log('     - 输入：/generate-cursor-rule');
+  console.log('     - 或者直接在聊天中输入：/generate-cursor-rule');
+  console.log('');
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  console.log('');
   
 } catch (error) {
   console.error('✗ 错误:', error.message);
