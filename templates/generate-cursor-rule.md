@@ -1,27 +1,43 @@
+# Cursor Rules Instructions
+To create or edit a rule:
+1. Rules should be stored in the `.cursor/rules` directory
+2. Rule files must have a `.mdc` extension (e.g., `my-rule.mdc`)
+3. To reference a file in your rule, use the format: `[filename.ext](mdc:filename.ext)` where the path is relative to the workspace root
+4. Rules use Markdown format with special Cursor-specific extensions
+5. Rules will be shown to the AI to help with codebase navigation and understanding
+6. Metadata is stored in frontmatter and controls how the rule is used and must be formatted properly.
+Metadata properties are:
+ - alwaysApply: true/false # Will apply to every request
+ - description: string # A description that allows the agent to fetch the rule
+ - globs: string # A comma separated list of gitignore style patterns controlling what files this rule will apply to
+Usually only one of these types would be set, though it is valid to have globs and a description.
+
+Example rule that is always applied concerning project structure:
+```
 ---
-description: Generate Cursor Rules - 生成 Cursor 规则文件
-globs:
+alwaysApply: true
+---
+# Project Structure Guide The main entry point is
+[index.js](mdc:index.js), which loads configuration from
+[config.js](mdc:config.js)
+```
+
+
+Example rule that only applies to TypeScript and TypeScript React files:
+```
+---
+globs: *.ts,*.tsx
+---
+Always use semicolons
+```
+
+Example rule that is manually applied by the user:
+```
+---
 alwaysApply: false
 ---
+Lots of information about a particular task
+```
 
-请帮我生成一个 Cursor 规则文件（.cursorrules）。
 
-请按照以下步骤操作：
-
-1. **分析当前项目**：
-   - 识别项目类型（前端/后端/全栈等）
-   - 识别使用的技术栈和框架
-   - 识别代码风格和约定
-
-2. **生成规则内容**：
-   - 根据项目特点生成合适的规则
-   - 包含代码风格指南
-   - 包含最佳实践建议
-   - 包含项目特定的约定
-
-3. **输出格式**：
-   - 生成 .cursorrules 文件内容
-   - 使用清晰的 Markdown 格式
-   - 包含必要的注释和说明
-
-请开始分析当前项目并生成规则文件。
+You must use these instructions to generate new rules or modify existing ones. Use the conversation history to understand the context of the rule(s) you should generate.
