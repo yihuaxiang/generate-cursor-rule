@@ -42,6 +42,8 @@
 npm install -g generate-cursor-rule
 ```
 
+> 💡 **提示**：如果安装时没有看到"安装成功"的提示信息，可能是因为 npm 的日志级别设置。不用担心，功能已经正常安装！你可以运行 `generate-cursor-rule` 命令来查看提示信息。
+
 **作为项目依赖安装**
 
 ```bash
