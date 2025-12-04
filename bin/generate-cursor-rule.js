@@ -9,38 +9,25 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
+// 获取模板文件路径
+const templatePath = path.join(__dirname, '..', 'templates', 'generate-cursor-rules.md');
+
+// 读取模板文件内容
+let ruleContent;
+try {
+  if (!fs.existsSync(templatePath)) {
+    throw new Error(`模板文件不存在: ${templatePath}`);
+  }
+  ruleContent = fs.readFileSync(templatePath, 'utf8');
+} catch (error) {
+  console.error('✗ 错误: 无法读取模板文件');
+  console.error(`  错误信息: ${error.message}`);
+  process.exit(1);
+}
+
 const homeDir = os.homedir();
 const cursorCommandsDir = path.join(homeDir, '.cursor', 'commands');
-const ruleFilePath = path.join(cursorCommandsDir, 'generate-cursor-rule.mdc');
-
-const ruleContent = `---
-description: Generate Cursor Rules - 生成 Cursor 规则文件
-globs:
-alwaysApply: false
----
-
-请帮我生成一个 Cursor 规则文件（.cursorrules）。
-
-请按照以下步骤操作：
-
-1. **分析当前项目**：
-   - 识别项目类型（前端/后端/全栈等）
-   - 识别使用的技术栈和框架
-   - 识别代码风格和约定
-
-2. **生成规则内容**：
-   - 根据项目特点生成合适的规则
-   - 包含代码风格指南
-   - 包含最佳实践建议
-   - 包含项目特定的约定
-
-3. **输出格式**：
-   - 生成 .cursorrules 文件内容
-   - 使用清晰的 Markdown 格式
-   - 包含必要的注释和说明
-
-请开始分析当前项目并生成规则文件。
-`;
+const ruleFilePath = path.join(cursorCommandsDir, 'generate-cursor-rules.md');
 
 try {
   // 确保目录存在
@@ -56,7 +43,7 @@ try {
     console.log(`   跳过创建，保留现有文件内容`);
     console.log(`   如需重新生成，请先删除该文件`);
     console.log('');
-    console.log('💡 提示：如果文件已存在，请重启 Cursor 编辑器后使用 /generate-cursor-rule 命令');
+    console.log('💡 提示：如果文件已存在，请重启 Cursor 编辑器后使用 /generate-cursor-rules 命令');
     process.exit(0);
   }
 
@@ -76,8 +63,8 @@ try {
   console.log('');
   console.log('  2️⃣  在 Cursor 中使用命令：');
   console.log('     - 打开命令面板：Cmd/Ctrl + Shift + P');
-  console.log('     - 输入：/generate-cursor-rule');
-  console.log('     - 或者直接在聊天中输入：/generate-cursor-rule');
+  console.log('     - 输入：/generate-cursor-rules');
+  console.log('     - 或者直接在聊天中输入：/generate-cursor-rules');
   console.log('');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log('');
