@@ -19,7 +19,7 @@ const output = (message) => {
 function generateCursorRule() {
   try {
     // 获取模板文件路径
-    const templatePath = path.join(__dirname, '..', 'templates', 'generate-cursor-rules.md');
+    const templatePath = path.join(__dirname, '..', 'templates', 'generate-cursor-rule.md');
     
     // 读取模板文件内容
     if (!fs.existsSync(templatePath)) {
@@ -30,7 +30,7 @@ function generateCursorRule() {
     // 获取用户主目录（跨平台兼容）
     const homeDir = os.homedir();
     const cursorCommandsDir = path.join(homeDir, '.cursor', 'commands');
-    const ruleFilePath = path.join(cursorCommandsDir, 'generate-cursor-rules.md');
+    const ruleFilePath = path.join(cursorCommandsDir, 'generate-cursor-rule.md');
 
     // 确保 .cursor/commands 目录存在
     if (!fs.existsSync(cursorCommandsDir)) {
@@ -65,8 +65,8 @@ function generateCursorRule() {
     output('');
     output('  2️⃣  在 Cursor 中使用命令：');
     output('     - 打开命令面板：Cmd/Ctrl + Shift + P');
-    output('     - 输入：/generate-cursor-rules');
-    output('     - 或者直接在聊天中输入：/generate-cursor-rules');
+    output('     - 输入：/generate-cursor-rule');
+    output('     - 或者直接在聊天中输入：/generate-cursor-rule');
     output('');
     output('  3️⃣  开始生成规则：');
     output('     - AI 会自动分析你的项目');
@@ -82,7 +82,7 @@ function generateCursorRule() {
   } catch (error) {
     process.stderr.write('✗ 错误: 无法创建 Cursor 规则文件\n');
     process.stderr.write(`  错误信息: ${error.message}\n`);
-    process.stderr.write(`  请手动创建文件: ~/.cursor/commands/generate-cursor-rules.md\n`);
+    process.stderr.write(`  请手动创建文件: ~/.cursor/commands/generate-cursor-rule.md\n`);
     process.exit(1);
   }
 }
