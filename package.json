@@ -1,0 +1,32 @@
+{
+  "name": "generate-cursor-rule",
+  "version": "1.0.0",
+  "description": "自动在 Cursor 编辑器中创建 /generate-cursor-rule 命令",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "node scripts/postinstall.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cursor",
+    "editor",
+    "command",
+    "rule",
+    "cursor-rules"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "bin": {
+    "generate-cursor-rule": "./bin/generate-cursor-rule.js"
+  },
+  "files": [
+    "scripts",
+    "bin",
+    "README.md",
+    "LICENSE"
+  ]
+}
+
